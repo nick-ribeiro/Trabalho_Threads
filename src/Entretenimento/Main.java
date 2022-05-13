@@ -1,17 +1,22 @@
 package Entretenimento;
 
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
 
 public class Main {
     
     public static void main(String[] args){
         
-            BlockingQueue<String> bq = new ArrayBlockingQueue<String>(5);
-            BlockingQueue<String> bq2 = new ArrayBlockingQueue<String>(5);
-            
-            Produtor add = new Produtor(bq, bq2);
-            
-            new Thread(add).start();
+        int N_Consumidores = Runtime.getRuntime().availableProcessors();
+
+        BlockingQueue<String> queue = new LinkedBlockingQueue<>(6);
+        
+        new Thread(new Banda(queue)).start();
+       
+        for (int j = 0; j < N_Consumidores; j++) {
+            new Thread(new Consumidor(queue)).start();
+        }
+
     }
 }
