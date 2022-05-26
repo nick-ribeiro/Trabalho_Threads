@@ -1,7 +1,6 @@
-package Entretenimento;
+package Comida;
 
 import java.util.concurrent.BlockingQueue;
-
 
 public class Valor extends Thread{
     
@@ -13,20 +12,22 @@ public class Valor extends Thread{
     }
     public void run() {
         try {
-//  chama a função
+        //  chama a função
             generateValores();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
     }
-    
-//  nessa função é gerado aleatoriamente o valor do show e colocado no BlockingQueue
+
+//  nessa função é gerado aleatoriamente o valor da comida e colocado no BlockingQueue    
     private void generateValores() throws InterruptedException {
-        Double valores[] = {200.0, 400.0, 500.0, 600.0, 1000.0, 700.0, 900.0, 300.0, 450.50, 1200.0};
+        
+        Double valores[] = {18.0, 17.0, 20.5, 45.0, 15.5, 22.5, 25.5, 19.0, 10.0, 25.5, 50.0, 5.5, 21.5, 7.5, 11.0, 12.0, 29.5, 35.0, 35.5, 32.5};
  
-        for(int i = 1; i < 11; i++) {
-            valor.put(valores[(int)Math.floor(Math.random()*10)]);
+        for(int i = 1; i < 21; i++) {
+            valor.put(valores[(int)Math.floor(Math.random()*20)]);
             Thread.sleep(1000);
         }
-     }
+     
+    }
 }

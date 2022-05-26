@@ -8,14 +8,17 @@ public class Main {
     
     public static void main(String[] args){
         
-        int N_Consumidores = Runtime.getRuntime().availableProcessors();
-
-        BlockingQueue<String> queue = new LinkedBlockingQueue<>(6);
+//  ambos dos BlockingQueue são criados, irão inserir os dados na fila e passar para outras classes
+        BlockingQueue<String> queue = new LinkedBlockingQueue<>(10);
+        BlockingQueue<Double> queue2 = new LinkedBlockingQueue<>(10);
         
+//  São criadas as Threads tanto para banda quanto para valor e iniciadas.        
         new Thread(new Banda(queue)).start();
-       
-        for (int j = 0; j < N_Consumidores; j++) {
-            new Thread(new Consumidor(queue)).start();
+        new Thread(new Valor(queue2)).start();
+        
+//  É iniciado a Thread para os consumidores
+        for (int j = 1; j < 11; j++) {
+            new Thread(new Consumidor(queue, queue2)).start();
         }
 
     }
