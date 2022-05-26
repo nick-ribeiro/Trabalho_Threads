@@ -2,6 +2,13 @@ package Comida;
 
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * Thread que tem a funcao de consumir o projeto Comida.
+ * @author Maria Eduarda Zanin Pereira
+ * @author Nícolas R. Martins Paiva e Souza
+ *
+ */
+
 public class Consumidor extends Thread{
     
     private BlockingQueue<Integer> id;
@@ -10,7 +17,14 @@ public class Consumidor extends Thread{
     private BlockingQueue<Double> valor;
     private BlockingQueue<Integer> quant;
     
-//    recebe um BlockingQueue do id e nome do cliente, comida, valor e quantidade
+/**
+ * <p> recebe um BlockingQueue do id e nome do cliente, bebida, valor e quantidade </p>
+ * @param id
+ * @param nome_cliente
+ * @param nome_comida
+ * @param valor
+ * @param quant
+*/
     public Consumidor(BlockingQueue<Integer> id, BlockingQueue<String> nome_cliente, BlockingQueue<String> nome_comida, BlockingQueue<Double> valor, BlockingQueue<Integer> quant) {
         this.id = id;
         this.nome_cliente = nome_cliente;
@@ -19,7 +33,10 @@ public class Consumidor extends Thread{
         this.quant = quant;
     }
     
-//    no metódo run é consumido os BlockQueue, assim é liberado espaço da fila.
+/**
+ *  <p> no metódo run é consumido os BlockQueue, assim é liberado espaço da fila. </p>   
+ *  @since 1.0
+ */ 
     public void run() {
         try {
                 Integer ids = id.take();
